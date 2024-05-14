@@ -1,14 +1,20 @@
+// Import required modules
 const express = require('express');
-const app = express();
-const port = 80;
 
-// Define a route to handle root URL
+// Create Express app
+const app = express();
+
+// Set EJS as the view engine
+app.set('view engine', 'ejs');
+
+// Define a route for the home page
 app.get('/', (req, res) => {
-  // Send "Hello, World!" as the response
-  res.send('<h1>Hello, World!</h1>');
+  // Render the 'index.ejs' template
+  res.render('index', { message: 'Hello, World!' });
 });
 
 // Start the server
-app.listen(port, () => {
-  console.log(`Server is listening at http://localhost:${port}`);
+const PORT = process.env.PORT || 80;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
